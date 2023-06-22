@@ -1,95 +1,95 @@
 import 'dart:convert';
 
-import 'package:eds_test/data/models/album_model.dart';
-import 'package:eds_test/data/models/comment_model.dart';
-import 'package:eds_test/data/models/photo_model.dart';
-import 'package:eds_test/data/models/post_model.dart';
-import 'package:eds_test/data/models/user_model.dart';
+import 'package:eds_test/data/models/album/album.dart';
+import 'package:eds_test/data/models/comment/comment.dart';
+import 'package:eds_test/data/models/photo/photo.dart';
+import 'package:eds_test/data/models/post/post.dart';
+import 'package:eds_test/data/models/user/user.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
   static const baseUrl = 'https://jsonplaceholder.typicode.com';
 
-  static Future<List<UserModel>> getAllUsers() async {
+  static Future<List<User>> getAllUsers() async {
     const url = '$baseUrl/users/';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(UserModel.fromMap).toList();
+    return jsonResponse.map(User.fromJson).toList();
   }
 
-  static Future<List<PostModel>> getAllPosts() async {
+  static Future<List<Post>> getAllPosts() async {
     const url = '$baseUrl/posts/';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(PostModel.fromMap).toList();
+    return jsonResponse.map(Post.fromJson).toList();
   }
 
-  static Future<List<AlbumModel>> getAllAlbums() async {
+  static Future<List<Album>> getAllAlbums() async {
     const url = '$baseUrl/albums';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(AlbumModel.fromMap).toList();
+    return jsonResponse.map(Album.fromJson).toList();
   }
 
-  static Future<List<PhotoModel>> getAllPhotos() async {
+  static Future<List<Photo>> getAllPhotos() async {
     const url = '$baseUrl/photos/';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(PhotoModel.fromMap).toList();
+    return jsonResponse.map(Photo.fromJson).toList();
   }
 
-  static Future<List<CommentModel>> getAllComments() async {
+  static Future<List<Comment>> getAllComments() async {
     const url = '$baseUrl/comments/';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(CommentModel.fromMap).toList();
+    return jsonResponse.map(Comment.fromJson).toList();
   }
 
-  static Future<List<PostModel>> getPostsByUserId(int userId) async {
+  static Future<List<Post>> getPostsByUserId(int userId) async {
     final url = '$baseUrl/user/$userId/posts';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(PostModel.fromMap).toList();
+    return jsonResponse.map(Post.fromJson).toList();
   }
 
-  static Future<List<AlbumModel>> getAlbumsByUserId(int userId) async {
+  static Future<List<Album>> getAlbumsByUserId(int userId) async {
     final url = '$baseUrl/user/$userId/albums';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(AlbumModel.fromMap).toList();
+    return jsonResponse.map(Album.fromJson).toList();
   }
 
-  static Future<List<AlbumModelWithPhotos>> getAlbumsByUserIdWithPhotos(
+  static Future<List<AlbumWithPhotos>> getAlbumsByUserIdWithPhotos(
     int userId,
   ) async {
     final url = '$baseUrl/user/$userId/albums?_embed=photos';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(AlbumModelWithPhotos.fromMap).toList();
+    return jsonResponse.map(AlbumWithPhotos.fromJson).toList();
   }
 
-  static Future<List<PhotoModel>> getPhotosByAlbumId(int albumId) async {
+  static Future<List<Photo>> getPhotosByAlbumId(int albumId) async {
     final url = '$baseUrl/albums/$albumId/photos/';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(PhotoModel.fromMap).toList();
+    return jsonResponse.map(Photo.fromJson).toList();
   }
 
-  static Future<List<CommentModel>> getCommentsByPostId(int postId) async {
+  static Future<List<Comment>> getCommentsByPostId(int postId) async {
     final url = '$baseUrl/posts/$postId/comments/';
     final response = await http.get(Uri.parse(url));
     final jsonResponse =
         List<Map<String, dynamic>>.from(json.decode(response.body) as List);
-    return jsonResponse.map(CommentModel.fromMap).toList();
+    return jsonResponse.map(Comment.fromJson).toList();
   }
 
   static Future<void> sendComment({

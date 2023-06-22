@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../data/models/post_model.dart';
-import '../data/models/user_model.dart';
+import '../data/models/post/post.dart';
+import '../data/models/user/user.dart';
 import 'post_detail_page.dart';
 import 'shared_widgets/post_card.dart';
 import 'theme/app_colors.dart';
 import 'theme/app_text_styles.dart';
 
 class AllPostsPage extends StatefulWidget {
-  final UserModel user;
-  final List<PostModel> posts;
+  final User user;
+  final List<Post> posts;
 
   const AllPostsPage({
     required this.user,

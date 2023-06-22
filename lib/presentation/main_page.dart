@@ -1,4 +1,4 @@
-import 'package:eds_test/data/models/user_model.dart';
+import 'package:eds_test/data/models/user/user.dart';
 import 'package:eds_test/data/services/api_service.dart';
 import 'package:eds_test/presentation/theme/app_colors.dart';
 import 'package:eds_test/presentation/theme/app_text_styles.dart';
@@ -15,7 +15,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  List<UserModel> result = List.empty();
+  List<User> result = List.empty();
   bool _isLoading = true;
 
   @override

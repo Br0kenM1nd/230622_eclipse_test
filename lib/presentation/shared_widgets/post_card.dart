@@ -1,10 +1,10 @@
-import 'package:eds_test/data/models/post_model.dart';
+import 'package:eds_test/data/models/post/post.dart';
 import 'package:eds_test/presentation/theme/app_colors.dart';
 import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {
-  final PostModel post;
+  final Post post;
 
   const PostCard({
     required this.post,

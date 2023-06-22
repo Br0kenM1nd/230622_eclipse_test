@@ -1,6 +1,6 @@
-import 'package:eds_test/data/models/album_model.dart';
-import 'package:eds_test/data/models/post_model.dart';
-import 'package:eds_test/data/models/user_model.dart';
+import 'package:eds_test/data/models/album/album.dart';
+import 'package:eds_test/data/models/post/post.dart';
+import 'package:eds_test/data/models/user/user.dart';
 import 'package:eds_test/data/services/api_service.dart';
 import 'package:eds_test/presentation/album_detail_page.dart';
 import 'package:eds_test/presentation/all_albums_page.dart';
@@ -14,7 +14,7 @@ import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class UserPage extends StatefulWidget {
-  final UserModel userModel;
+  final User userModel;
 
   const UserPage({Key? key, required this.userModel}) : super(key: key);
 
@@ -24,8 +24,8 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   bool _isLoading = true;
-  List<PostModel> posts = List.empty();
-  List<AlbumModelWithPhotos> albums = List.empty();
+  List<Post> posts = List.empty();
+  List<AlbumWithPhotos> albums = List.empty();
 
   @override
   void initState() {

@@ -1,5 +1,5 @@
-import 'package:eds_test/data/models/comment_model.dart';
-import 'package:eds_test/data/models/post_model.dart';
+import 'package:eds_test/data/models/comment/comment.dart';
+import 'package:eds_test/data/models/post/post.dart';
 import 'package:eds_test/data/services/api_service.dart';
 import 'package:eds_test/presentation/shared_widgets/comment_card.dart';
 import 'package:eds_test/presentation/shared_widgets/custom_text_field.dart';
@@ -9,7 +9,7 @@ import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailPage extends StatefulWidget {
-  final PostModel post;
+  final Post post;
 
   const PostDetailPage({
     required this.post,
@@ -21,7 +21,7 @@ class PostDetailPage extends StatefulWidget {
 }
 
 class _PostDetailPageState extends State<PostDetailPage> {
-  List<CommentModel> comments = List.empty();
+  List<Comment> comments = List.empty();
   bool _isLoading = true;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
