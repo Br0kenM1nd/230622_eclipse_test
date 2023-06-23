@@ -14,7 +14,7 @@ class ApiService {
   static final _http = GetIt.I.get<Dio>();
 
   Future<List<User>> getAllUsers() async {
-    const url = '/users';
+    const url = '/usrs';
     final res = await handleRequest(() => _http.get(url));
     return const ConvertTo<User>().list(res.data, User.fromJson);
   }

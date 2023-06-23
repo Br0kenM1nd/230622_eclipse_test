@@ -1,3 +1,4 @@
+import 'package:eds_test/core/utils/show.dart';
 import 'package:eds_test/presentation/pages/user_page.dart';
 import 'package:eds_test/presentation/theme/app_colors.dart';
 import 'package:eds_test/presentation/theme/app_text_styles.dart';
@@ -7,8 +8,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared_widgets/loader.dart';
 import 'bloc/user_list_bloc.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  late final UserListBloc bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    bloc = context.read<UserListBloc>()..add(const UserListGet());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +42,7 @@ class MainPage extends StatelessWidget {
             return ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: state.users.length,
-              separatorBuilder: (_, __) => const SizedBox(
-                height: 12,
-              ),
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 final user = state.users[index];
                 return GestureDetector(
@@ -38,9 +50,7 @@ class MainPage extends StatelessWidget {
                     Navigator.push<void>(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UserPage(
-                          userModel: user,
-                        ),
+                        builder: (context) => UserPage(userModel: user),
                       ),
                     );
                   },
@@ -49,27 +59,20 @@ class MainPage extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: ListTile(
                       horizontalTitleGap: 8,
-                      title: Text(
-                        user.username,
-                        style: AppTextStyles.title,
-                      ),
-                      subtitle: Text(
-                        user.name,
-                        style: AppTextStyles.subtitle,
-                      ),
                       leading: const Icon(
                         Icons.person,
                         size: 32,
                         color: AppColors.white,
                       ),
+                      title: Text(user.username, style: AppTextStyles.title),
+                      subtitle: Text(user.name, style: AppTextStyles.subtitle),
                     ),
                   ),
                 );
               },
             );
           } else if (state is UserListError) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.error)));
+            Show.error(context, state.error);
             return const SizedBox();
           } else {
             return const SizedBox();

@@ -19,6 +19,10 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
   }
 
   Future<void> _getUsers(UserListGet event, Emitter<UserListState> emit) async {
-    emit(UserListLoaded(await api.getAllUsers()));
+    try {
+      emit(UserListLoaded(await api.getAllUsers()));
+    } on Exception catch (error) {
+      emit(UserListError(error.toString()));
+    }
   }
 }
