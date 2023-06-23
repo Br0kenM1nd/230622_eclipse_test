@@ -31,7 +31,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      comments = await ApiService.getCommentsByPostId(widget.post.id);
+      comments = await ApiService().getCommentsByPostId(widget.post.id);
       setState(() {
         _isLoading = false;
         comments = comments;
@@ -97,7 +97,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
             TextButton(
               child: const Text('Submit'),
               onPressed: () {
-                ApiService.sendComment(
+                ApiService().sendComment(
                   name: nameController.text,
                   email: emailController.text,
                   body: commentController.text,

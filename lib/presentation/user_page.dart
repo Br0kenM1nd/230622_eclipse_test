@@ -31,9 +31,9 @@ class _UserPageState extends State<UserPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      posts = await ApiService.getPostsByUserId(widget.userModel.id);
+      posts = await ApiService().getPostsByUserId(widget.userModel.id);
       albums =
-          await ApiService.getAlbumsByUserIdWithPhotos(widget.userModel.id);
+          await ApiService().getAlbumsByUserIdWithPhotos(widget.userModel.id);
       setState(() {
         _isLoading = false;
         posts = posts;

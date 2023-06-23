@@ -9,7 +9,7 @@ import 'observer.dart';
 
 Future<void> initializeDependencies() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: '.env');
+  await dotenv.load();
   Bloc.observer = Observer();
   GetIt.I.registerSingleton<Dio>(const Http().createClient());
 }

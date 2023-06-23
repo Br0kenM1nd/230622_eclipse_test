@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      result = await ApiService.getAllUsers();
+      result = await ApiService().getAllUsers();
       setState(() {
         _isLoading = false;
       });

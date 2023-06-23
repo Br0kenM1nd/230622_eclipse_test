@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Http {
@@ -14,9 +13,7 @@ class Http {
     ..options.validateStatus = _noValidation
     ..interceptors.add(InterceptorsWrapper(onError: _throwError));
 
-  static String? get baseUrl {
-    return kDebugMode ? dotenv.env['STAGE'] : dotenv.env['PROD'];
-  }
+  static String? get baseUrl => dotenv.env['PROD'];
 
   static bool _noValidation(int? _) => true;
 
