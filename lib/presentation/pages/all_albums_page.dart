@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../data/models/album/album.dart';
-import '../data/models/user/user.dart';
+import '../../data/models/album/album.dart';
+import '../../data/models/user/user.dart';
 import 'album_detail_page.dart';
-import 'shared_widgets/album_card.dart';
-import 'theme/app_colors.dart';
-import 'theme/app_text_styles.dart';
+import '../shared_widgets/album_card.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_text_styles.dart';
 
 class AllAlbumsPage extends StatelessWidget {
   final User user;

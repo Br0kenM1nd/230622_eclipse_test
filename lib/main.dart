@@ -1,7 +1,9 @@
-import 'package:eds_test/presentation/main_page.dart';
+import 'package:eds_test/presentation/pages/main/bloc/user_list_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/dependencies/injector.dart';
+import 'presentation/pages/main/main_page.dart';
 
 Future<void> main() async {
   await initializeDependencies();
@@ -13,10 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Test Task Application',
-      home: MainPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => UserListBloc()..add(const UserListGet())),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Test Task Application',
+        home: MainPage(),
+      ),
     );
   }
 }

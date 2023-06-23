@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class AlbumDetailPage extends StatelessWidget {
   final AlbumWithPhotos album;
+
   const AlbumDetailPage({
     required this.album,
     Key? key,

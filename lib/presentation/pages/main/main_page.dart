@@ -1,33 +1,14 @@
-import 'package:eds_test/data/models/user/user.dart';
-import 'package:eds_test/data/services/api_service.dart';
+import 'package:eds_test/presentation/pages/user_page.dart';
 import 'package:eds_test/presentation/theme/app_colors.dart';
 import 'package:eds_test/presentation/theme/app_text_styles.dart';
-import 'package:eds_test/presentation/user_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'shared_widgets/loader.dart';
+import '../../shared_widgets/loader.dart';
+import 'bloc/user_list_bloc.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
-
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  List<User> result = List.empty();
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      result = await ApiService().getAllUsers();
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +20,19 @@ class _MainPageState extends State<MainPage> {
         titleTextStyle: AppTextStyles.title,
         backgroundColor: AppColors.gray,
       ),
-      body: _isLoading
-          ? const Loader()
-          : ListView.separated(
+      body: BlocBuilder<UserListBloc, UserListState>(
+        builder: (context, state) {
+          if (state is UserListInitial) {
+            return const Loader();
+          } else if (state is UserListLoaded) {
+            return ListView.separated(
               padding: const EdgeInsets.all(16),
-              itemCount: result.length,
+              itemCount: state.users.length,
               separatorBuilder: (_, __) => const SizedBox(
                 height: 12,
               ),
               itemBuilder: (context, index) {
-                final user = result[index];
+                final user = state.users[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.push<void>(
@@ -82,7 +66,16 @@ class _MainPageState extends State<MainPage> {
                   ),
                 );
               },
-            ),
+            );
+          } else if (state is UserListError) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.error)));
+            return const SizedBox();
+          } else {
+            return const SizedBox();
+          }
+        },
+      ),
     );
   }
 }

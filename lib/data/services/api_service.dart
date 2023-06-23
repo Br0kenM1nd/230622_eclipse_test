@@ -11,8 +11,6 @@ import 'package:get_it/get_it.dart';
 class ApiService {
   const ApiService();
 
-  static const baseUrl = 'https://jsonplaceholder.typicode.com';
-
   static final _http = GetIt.I.get<Dio>();
 
   Future<List<User>> getAllUsers() async {

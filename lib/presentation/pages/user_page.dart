@@ -2,16 +2,17 @@ import 'package:eds_test/data/models/album/album.dart';
 import 'package:eds_test/data/models/post/post.dart';
 import 'package:eds_test/data/models/user/user.dart';
 import 'package:eds_test/data/services/api_service.dart';
-import 'package:eds_test/presentation/album_detail_page.dart';
-import 'package:eds_test/presentation/all_albums_page.dart';
-import 'package:eds_test/presentation/all_posts_page.dart';
-import 'package:eds_test/presentation/post_detail_page.dart';
+import 'package:eds_test/presentation/pages/album_detail_page.dart';
+import 'package:eds_test/presentation/pages/all_albums_page.dart';
+import 'package:eds_test/presentation/pages/all_posts_page.dart';
 import 'package:eds_test/presentation/shared_widgets/album_card.dart';
 import 'package:eds_test/presentation/shared_widgets/loader.dart';
 import 'package:eds_test/presentation/shared_widgets/post_card.dart';
 import 'package:eds_test/presentation/theme/app_colors.dart';
 import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
+
+import 'post_detail_page.dart';
 
 class UserPage extends StatefulWidget {
   final User userModel;
