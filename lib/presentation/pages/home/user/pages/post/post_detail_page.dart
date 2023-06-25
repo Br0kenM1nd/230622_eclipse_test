@@ -1,28 +1,27 @@
-import 'package:eds_test/data/models/comment/comment.dart';
-import 'package:eds_test/data/models/post/post.dart';
-import 'package:eds_test/data/services/api_service.dart';
-import 'package:eds_test/presentation/shared_widgets/comment_card.dart';
-import 'package:eds_test/presentation/shared_widgets/custom_text_field.dart';
-import 'package:eds_test/presentation/shared_widgets/loader.dart';
-import 'package:eds_test/presentation/theme/app_colors.dart';
-import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../../core/utils/show.dart';
+import '../../../../../../data/models/post/post.dart';
+import '../../../../../../data/services/api_service.dart';
+import '../../../../../shared_widgets/comment_card.dart';
+import '../../../../../shared_widgets/custom_text_field.dart';
+import '../../../../../shared_widgets/loader.dart';
+import '../../../../../theme/app_colors.dart';
+import '../../../../../theme/app_text_styles.dart';
+import 'bloc/post_bloc.dart';
 
 class PostDetailPage extends StatefulWidget {
   final Post post;
 
-  const PostDetailPage({
-    required this.post,
-    Key? key,
-  }) : super(key: key);
+  const PostDetailPage({required this.post, Key? key}) : super(key: key);
 
   @override
   _PostDetailPageState createState() => _PostDetailPageState();
 }
 
 class _PostDetailPageState extends State<PostDetailPage> {
-  List<Comment> comments = List.empty();
-  bool _isLoading = true;
+  late final PostBloc bloc;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController commentController = TextEditingController();
@@ -30,13 +29,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      comments = await ApiService().getCommentsByPostId(widget.post.id);
-      setState(() {
-        _isLoading = false;
-        comments = comments;
-      });
-    });
+    bloc = context.read<PostBloc>()..add(PostGetComments(widget.post.id));
   }
 
   void _clearText() {
@@ -66,9 +59,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
               width: MediaQuery.of(context).size.width * 0.45,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   CustomTextField(
                     controller: nameController,
                     prefixIcon: const Icon(Icons.person),
@@ -97,7 +88,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
             TextButton(
               child: const Text('Submit'),
               onPressed: () {
-                ApiService().sendComment(
+                const ApiService().sendComment(
                   name: nameController.text,
                   email: emailController.text,
                   body: commentController.text,
@@ -121,9 +112,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
         titleTextStyle: AppTextStyles.title,
         backgroundColor: AppColors.gray,
       ),
-      body: _isLoading
-          ? const Loader()
-          : ListView(
+      body: BlocBuilder<PostBloc, PostState>(
+        builder: (context, state) {
+          if (state is PostInitial) {
+            return const Loader();
+          } else if (state is PostCommentsLoaded) {
+            return ListView(
               padding: const EdgeInsets.all(16),
               children: [
                 Text(
@@ -151,23 +145,28 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    final comment = comments[index];
+                    final comment = state.comments[index];
                     return CommentCard(
                       username: comment.name,
                       comment: comment.body,
                       email: comment.email,
                     );
                   },
-                  itemCount: comments.length,
+                  itemCount: state.comments.length,
                 ),
               ],
-            ),
+            );
+          } else if (state is PostError) {
+            Show.error(context, state.error);
+            return const SizedBox();
+          } else {
+            return const SizedBox();
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(
-          Icons.add,
-          size: 20,
-        ),
         onPressed: () => _displayDialog(context),
+        child: const Icon(Icons.add, size: 20),
       ),
     );
   }

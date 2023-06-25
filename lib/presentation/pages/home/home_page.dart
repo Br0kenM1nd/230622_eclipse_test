@@ -1,11 +1,11 @@
-import 'package:eds_test/core/utils/show.dart';
-import 'package:eds_test/presentation/pages/user_page.dart';
-import 'package:eds_test/presentation/theme/app_colors.dart';
-import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/show.dart';
 import '../../shared_widgets/loader.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_text_styles.dart';
+import 'user/user_page.dart';
 import 'bloc/user_list_bloc.dart';
 
 class MainPage extends StatefulWidget {
@@ -50,7 +50,7 @@ class _MainPageState extends State<MainPage> {
                     Navigator.push<void>(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UserPage(userModel: user),
+                        builder: (context) => UserPage(user: user),
                       ),
                     );
                   },

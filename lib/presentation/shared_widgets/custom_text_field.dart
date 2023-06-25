@@ -1,5 +1,6 @@
-import 'package:eds_test/presentation/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../theme/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;

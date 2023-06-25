@@ -184,6 +184,7 @@ linter:
     prefer_if_elements_to_conditional_expressions: true
     prefer_interpolation_to_compose_strings: true
     prefer_mixin: false
+    prefer_relative_imports: true
     prefer_single_quotes: true
     public_member_api_docs: false
     require_trailing_commas: true
