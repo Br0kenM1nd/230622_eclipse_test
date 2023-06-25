@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:eds_test/data/services/api_service.dart';
 import 'package:equatable/equatable.dart';
 
@@ -21,8 +22,10 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
   Future<void> _getUsers(UserListGet event, Emitter<UserListState> emit) async {
     try {
       emit(UserListLoaded(await api.getAllUsers()));
-    } on Exception catch (error) {
-      emit(UserListError(error.toString()));
+    } on DioException catch (e) {
+      emit(UserListError(e.error.toString()));
+    } on Exception catch (e) {
+      emit(UserListError(e.toString()));
     }
   }
 }
