@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/show.dart';
 import '../../../../../../data/models/post/post.dart';
-import '../../../../../../data/services/api_service.dart';
 import '../../../../../shared_widgets/comment_card.dart';
 import '../../../../../shared_widgets/custom_text_field.dart';
 import '../../../../../shared_widgets/loader.dart';
@@ -30,6 +29,16 @@ class _PostDetailPageState extends State<PostDetailPage> {
   void initState() {
     super.initState();
     bloc = context.read<PostBloc>()..add(PostGetComments(widget.post.id));
+  }
+
+  void _postComment() {
+    bloc.add(PostAddComment(
+      name: nameController.text,
+      email: emailController.text,
+      comment: commentController.text,
+    ));
+    Navigator.of(context).pop();
+    _clearText();
   }
 
   void _clearText() {
@@ -85,18 +94,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
             ),
           ),
           actions: <Widget>[
-            TextButton(
-              child: const Text('Submit'),
-              onPressed: () {
-                const ApiService().sendComment(
-                  name: nameController.text,
-                  email: emailController.text,
-                  body: commentController.text,
-                );
-                Navigator.of(context).pop();
-                _clearText();
-              },
-            )
+            TextButton(child: const Text('Submit'), onPressed: _postComment),
           ],
         );
       },
@@ -134,13 +132,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 const Text('Comments:'),
-                const SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

@@ -8,7 +8,7 @@ abstract class Show {
         ..showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,
-            duration: const Duration(seconds: 3),
+            duration: const Duration(seconds: 5),
             content: Text(error),
           ),
         );

@@ -79,15 +79,15 @@ class ApiService {
   Future<void> sendComment({
     required String name,
     required String email,
-    required String body,
+    required String comment,
   }) async {
     const url = '/comments';
-    await _http.post<Response<dynamic>>(
+    await _http.post<Map<String, dynamic>>(
       url,
       data: {
         'name': name,
         'email': email,
-        'body': body,
+        'body': comment,
       },
     );
   }
