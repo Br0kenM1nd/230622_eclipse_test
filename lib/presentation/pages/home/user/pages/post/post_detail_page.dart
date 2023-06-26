@@ -49,6 +49,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   @override
   void dispose() {
+    bloc.close();
     nameController.dispose();
     emailController.dispose();
     commentController.dispose();
