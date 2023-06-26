@@ -5,8 +5,8 @@ import '../../../core/utils/show.dart';
 import '../../shared_widgets/loader.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text_styles.dart';
-import 'user/user_page.dart';
 import 'bloc/user_list_bloc.dart';
+import 'user/user_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
