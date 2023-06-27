@@ -22,6 +22,7 @@ class Http {
     if (exception.response != null) {
       _logBadResponse(exception.response!);
       exceptionText = _getErrorInfo(exception.response!);
+      throw HttpException(exceptionText, uri: exception.requestOptions.uri);
     } else {
       _logError(exception);
     }

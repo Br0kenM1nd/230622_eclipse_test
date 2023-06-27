@@ -2,13 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:eds_test/data/services/api_service.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../data/models/user/user.dart';
+import '../../../../data/services/api_service.dart';
 
 part 'user_list_event.dart';
-
 part 'user_list_state.dart';
 
 class UserListBloc extends Bloc<UserListEvent, UserListState> {

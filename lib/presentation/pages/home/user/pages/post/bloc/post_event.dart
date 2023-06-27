@@ -13,6 +13,13 @@ class PostGetComments extends PostEvent {
   List<Object> get props => [postId];
 }
 
+class PostReset extends PostEvent {
+  const PostReset();
+
+  @override
+  List<Object> get props => [];
+}
+
 class PostAddComment extends PostEvent {
   final String name;
   final String email;

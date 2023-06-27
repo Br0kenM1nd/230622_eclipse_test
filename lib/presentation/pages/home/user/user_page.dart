@@ -35,6 +35,12 @@ class _UserPageState extends State<UserPage> {
   }
 
   @override
+  void dispose() {
+    bloc.add(const UserReset());
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,

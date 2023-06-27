@@ -5,6 +5,8 @@ abstract class PostState extends Equatable {
 }
 
 class PostInitial extends PostState {
+  const PostInitial();
+
   @override
   List<Object> get props => [];
 }

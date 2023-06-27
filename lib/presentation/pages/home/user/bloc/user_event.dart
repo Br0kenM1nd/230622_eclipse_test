@@ -12,3 +12,10 @@ class UserGet extends UserEvent {
   @override
   List<Object> get props => [userId];
 }
+
+class UserReset extends UserEvent {
+  const UserReset();
+
+  @override
+  List<Object> get props => [];
+}
