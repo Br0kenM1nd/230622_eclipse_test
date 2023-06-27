@@ -20,13 +20,21 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get username => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(4)
   Address get address => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get phone => throw _privateConstructorUsedError;
+  @HiveField(6)
   String get website => throw _privateConstructorUsedError;
+  @HiveField(7)
   Company get company => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,14 +48,14 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String username,
-      String email,
-      Address address,
-      String phone,
-      String website,
-      Company company});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String username,
+      @HiveField(3) String email,
+      @HiveField(4) Address address,
+      @HiveField(5) String phone,
+      @HiveField(6) String website,
+      @HiveField(7) Company company});
 
   $AddressCopyWith<$Res> get address;
   $CompanyCopyWith<$Res> get company;
@@ -135,14 +143,14 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String username,
-      String email,
-      Address address,
-      String phone,
-      String website,
-      Company company});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String username,
+      @HiveField(3) String email,
+      @HiveField(4) Address address,
+      @HiveField(5) String phone,
+      @HiveField(6) String website,
+      @HiveField(7) Company company});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -207,34 +215,44 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User implements _User {
-  const _$_User(
-      {required this.id,
-      required this.name,
-      required this.username,
-      required this.email,
-      required this.address,
-      required this.phone,
-      required this.website,
-      required this.company});
+@HiveType(typeId: 5)
+class _$_User extends _User {
+  _$_User(
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.username,
+      @HiveField(3) required this.email,
+      @HiveField(4) required this.address,
+      @HiveField(5) required this.phone,
+      @HiveField(6) required this.website,
+      @HiveField(7) required this.company})
+      : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final String username;
   @override
+  @HiveField(3)
   final String email;
   @override
+  @HiveField(4)
   final Address address;
   @override
+  @HiveField(5)
   final String phone;
   @override
+  @HiveField(6)
   final String website;
   @override
+  @HiveField(7)
   final Company company;
 
   @override
@@ -277,34 +295,43 @@ class _$_User implements _User {
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
-      {required final int id,
-      required final String name,
-      required final String username,
-      required final String email,
-      required final Address address,
-      required final String phone,
-      required final String website,
-      required final Company company}) = _$_User;
+abstract class _User extends User {
+  factory _User(
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String username,
+      @HiveField(3) required final String email,
+      @HiveField(4) required final Address address,
+      @HiveField(5) required final String phone,
+      @HiveField(6) required final String website,
+      @HiveField(7) required final Company company}) = _$_User;
+  _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   String get username;
   @override
+  @HiveField(3)
   String get email;
   @override
+  @HiveField(4)
   Address get address;
   @override
+  @HiveField(5)
   String get phone;
   @override
+  @HiveField(6)
   String get website;
   @override
+  @HiveField(7)
   Company get company;
   @override
   @JsonKey(ignore: true)
@@ -317,10 +344,15 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Address {
+  @HiveField(0)
   String get street => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get suite => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get city => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get zipcode => throw _privateConstructorUsedError;
+  @HiveField(4)
   Geo get geo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -334,7 +366,11 @@ abstract class $AddressCopyWith<$Res> {
       _$AddressCopyWithImpl<$Res, Address>;
   @useResult
   $Res call(
-      {String street, String suite, String city, String zipcode, Geo geo});
+      {@HiveField(0) String street,
+      @HiveField(1) String suite,
+      @HiveField(2) String city,
+      @HiveField(3) String zipcode,
+      @HiveField(4) Geo geo});
 
   $GeoCopyWith<$Res> get geo;
 }
@@ -399,7 +435,11 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String street, String suite, String city, String zipcode, Geo geo});
+      {@HiveField(0) String street,
+      @HiveField(1) String suite,
+      @HiveField(2) String city,
+      @HiveField(3) String zipcode,
+      @HiveField(4) Geo geo});
 
   @override
   $GeoCopyWith<$Res> get geo;
@@ -448,26 +488,33 @@ class __$$_AddressCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Address implements _Address {
-  const _$_Address(
-      {required this.street,
-      required this.suite,
-      required this.city,
-      required this.zipcode,
-      required this.geo});
+@HiveType(typeId: 6)
+class _$_Address extends _Address {
+  _$_Address(
+      {@HiveField(0) required this.street,
+      @HiveField(1) required this.suite,
+      @HiveField(2) required this.city,
+      @HiveField(3) required this.zipcode,
+      @HiveField(4) required this.geo})
+      : super._();
 
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
       _$$_AddressFromJson(json);
 
   @override
+  @HiveField(0)
   final String street;
   @override
+  @HiveField(1)
   final String suite;
   @override
+  @HiveField(2)
   final String city;
   @override
+  @HiveField(3)
   final String zipcode;
   @override
+  @HiveField(4)
   final Geo geo;
 
   @override
@@ -506,25 +553,31 @@ class _$_Address implements _Address {
   }
 }
 
-abstract class _Address implements Address {
-  const factory _Address(
-      {required final String street,
-      required final String suite,
-      required final String city,
-      required final String zipcode,
-      required final Geo geo}) = _$_Address;
+abstract class _Address extends Address {
+  factory _Address(
+      {@HiveField(0) required final String street,
+      @HiveField(1) required final String suite,
+      @HiveField(2) required final String city,
+      @HiveField(3) required final String zipcode,
+      @HiveField(4) required final Geo geo}) = _$_Address;
+  _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
   @override
+  @HiveField(0)
   String get street;
   @override
+  @HiveField(1)
   String get suite;
   @override
+  @HiveField(2)
   String get city;
   @override
+  @HiveField(3)
   String get zipcode;
   @override
+  @HiveField(4)
   Geo get geo;
   @override
   @JsonKey(ignore: true)
@@ -538,7 +591,9 @@ Geo _$GeoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Geo {
+  @HiveField(0)
   String get lat => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get lng => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -551,7 +606,7 @@ abstract class $GeoCopyWith<$Res> {
   factory $GeoCopyWith(Geo value, $Res Function(Geo) then) =
       _$GeoCopyWithImpl<$Res, Geo>;
   @useResult
-  $Res call({String lat, String lng});
+  $Res call({@HiveField(0) String lat, @HiveField(1) String lng});
 }
 
 /// @nodoc
@@ -588,7 +643,7 @@ abstract class _$$_GeoCopyWith<$Res> implements $GeoCopyWith<$Res> {
       __$$_GeoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String lat, String lng});
+  $Res call({@HiveField(0) String lat, @HiveField(1) String lng});
 }
 
 /// @nodoc
@@ -618,14 +673,18 @@ class __$$_GeoCopyWithImpl<$Res> extends _$GeoCopyWithImpl<$Res, _$_Geo>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Geo implements _Geo {
-  const _$_Geo({required this.lat, required this.lng});
+@HiveType(typeId: 7)
+class _$_Geo extends _Geo {
+  _$_Geo({@HiveField(0) required this.lat, @HiveField(1) required this.lng})
+      : super._();
 
   factory _$_Geo.fromJson(Map<String, dynamic> json) => _$$_GeoFromJson(json);
 
   @override
+  @HiveField(0)
   final String lat;
   @override
+  @HiveField(1)
   final String lng;
 
   @override
@@ -660,15 +719,19 @@ class _$_Geo implements _Geo {
   }
 }
 
-abstract class _Geo implements Geo {
-  const factory _Geo({required final String lat, required final String lng}) =
-      _$_Geo;
+abstract class _Geo extends Geo {
+  factory _Geo(
+      {@HiveField(0) required final String lat,
+      @HiveField(1) required final String lng}) = _$_Geo;
+  _Geo._() : super._();
 
   factory _Geo.fromJson(Map<String, dynamic> json) = _$_Geo.fromJson;
 
   @override
+  @HiveField(0)
   String get lat;
   @override
+  @HiveField(1)
   String get lng;
   @override
   @JsonKey(ignore: true)
@@ -681,8 +744,11 @@ Company _$CompanyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Company {
+  @HiveField(0)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get catchPhrase => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get bs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -695,7 +761,10 @@ abstract class $CompanyCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res, Company>;
   @useResult
-  $Res call({String name, String catchPhrase, String bs});
+  $Res call(
+      {@HiveField(0) String name,
+      @HiveField(1) String catchPhrase,
+      @HiveField(2) String bs});
 }
 
 /// @nodoc
@@ -739,7 +808,10 @@ abstract class _$$_CompanyCopyWith<$Res> implements $CompanyCopyWith<$Res> {
       __$$_CompanyCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String catchPhrase, String bs});
+  $Res call(
+      {@HiveField(0) String name,
+      @HiveField(1) String catchPhrase,
+      @HiveField(2) String bs});
 }
 
 /// @nodoc
@@ -775,18 +847,25 @@ class __$$_CompanyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Company implements _Company {
-  const _$_Company(
-      {required this.name, required this.catchPhrase, required this.bs});
+@HiveType(typeId: 8)
+class _$_Company extends _Company {
+  _$_Company(
+      {@HiveField(0) required this.name,
+      @HiveField(1) required this.catchPhrase,
+      @HiveField(2) required this.bs})
+      : super._();
 
   factory _$_Company.fromJson(Map<String, dynamic> json) =>
       _$$_CompanyFromJson(json);
 
   @override
+  @HiveField(0)
   final String name;
   @override
+  @HiveField(1)
   final String catchPhrase;
   @override
+  @HiveField(2)
   final String bs;
 
   @override
@@ -823,19 +902,23 @@ class _$_Company implements _Company {
   }
 }
 
-abstract class _Company implements Company {
-  const factory _Company(
-      {required final String name,
-      required final String catchPhrase,
-      required final String bs}) = _$_Company;
+abstract class _Company extends Company {
+  factory _Company(
+      {@HiveField(0) required final String name,
+      @HiveField(1) required final String catchPhrase,
+      @HiveField(2) required final String bs}) = _$_Company;
+  _Company._() : super._();
 
   factory _Company.fromJson(Map<String, dynamic> json) = _$_Company.fromJson;
 
   @override
+  @HiveField(0)
   String get name;
   @override
+  @HiveField(1)
   String get catchPhrase;
   @override
+  @HiveField(2)
   String get bs;
   @override
   @JsonKey(ignore: true)

@@ -20,8 +20,11 @@ Album _$AlbumFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Album {
+  @HiveField(0)
   int get userId => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +37,10 @@ abstract class $AlbumCopyWith<$Res> {
   factory $AlbumCopyWith(Album value, $Res Function(Album) then) =
       _$AlbumCopyWithImpl<$Res, Album>;
   @useResult
-  $Res call({int userId, int id, String title});
+  $Res call(
+      {@HiveField(0) int userId,
+      @HiveField(1) int id,
+      @HiveField(2) String title});
 }
 
 /// @nodoc
@@ -77,7 +83,10 @@ abstract class _$$_AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       __$$_AlbumCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, int id, String title});
+  $Res call(
+      {@HiveField(0) int userId,
+      @HiveField(1) int id,
+      @HiveField(2) String title});
 }
 
 /// @nodoc
@@ -112,17 +121,25 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res, _$_Album>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Album implements _Album {
-  const _$_Album({required this.userId, required this.id, required this.title});
+@HiveType(typeId: 0)
+class _$_Album extends _Album {
+  _$_Album(
+      {@HiveField(0) required this.userId,
+      @HiveField(1) required this.id,
+      @HiveField(2) required this.title})
+      : super._();
 
   factory _$_Album.fromJson(Map<String, dynamic> json) =>
       _$$_AlbumFromJson(json);
 
   @override
+  @HiveField(0)
   final int userId;
   @override
+  @HiveField(1)
   final int id;
   @override
+  @HiveField(2)
   final String title;
 
   @override
@@ -158,19 +175,23 @@ class _$_Album implements _Album {
   }
 }
 
-abstract class _Album implements Album {
-  const factory _Album(
-      {required final int userId,
-      required final int id,
-      required final String title}) = _$_Album;
+abstract class _Album extends Album {
+  factory _Album(
+      {@HiveField(0) required final int userId,
+      @HiveField(1) required final int id,
+      @HiveField(2) required final String title}) = _$_Album;
+  _Album._() : super._();
 
   factory _Album.fromJson(Map<String, dynamic> json) = _$_Album.fromJson;
 
   @override
+  @HiveField(0)
   int get userId;
   @override
+  @HiveField(1)
   int get id;
   @override
+  @HiveField(2)
   String get title;
   @override
   @JsonKey(ignore: true)
@@ -184,9 +205,13 @@ AlbumWithPhotos _$AlbumWithPhotosFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AlbumWithPhotos {
+  @HiveField(0)
   int get userId => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(3)
   List<Photo> get photos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -201,7 +226,11 @@ abstract class $AlbumWithPhotosCopyWith<$Res> {
           AlbumWithPhotos value, $Res Function(AlbumWithPhotos) then) =
       _$AlbumWithPhotosCopyWithImpl<$Res, AlbumWithPhotos>;
   @useResult
-  $Res call({int userId, int id, String title, List<Photo> photos});
+  $Res call(
+      {@HiveField(0) int userId,
+      @HiveField(1) int id,
+      @HiveField(2) String title,
+      @HiveField(3) List<Photo> photos});
 }
 
 /// @nodoc
@@ -251,7 +280,11 @@ abstract class _$$_AlbumWithPhotosCopyWith<$Res>
       __$$_AlbumWithPhotosCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, int id, String title, List<Photo> photos});
+  $Res call(
+      {@HiveField(0) int userId,
+      @HiveField(1) int id,
+      @HiveField(2) String title,
+      @HiveField(3) List<Photo> photos});
 }
 
 /// @nodoc
@@ -293,25 +326,31 @@ class __$$_AlbumWithPhotosCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AlbumWithPhotos implements _AlbumWithPhotos {
-  const _$_AlbumWithPhotos(
-      {required this.userId,
-      required this.id,
-      required this.title,
-      required final List<Photo> photos})
-      : _photos = photos;
+@HiveType(typeId: 1)
+class _$_AlbumWithPhotos extends _AlbumWithPhotos {
+  _$_AlbumWithPhotos(
+      {@HiveField(0) required this.userId,
+      @HiveField(1) required this.id,
+      @HiveField(2) required this.title,
+      @HiveField(3) required final List<Photo> photos})
+      : _photos = photos,
+        super._();
 
   factory _$_AlbumWithPhotos.fromJson(Map<String, dynamic> json) =>
       _$$_AlbumWithPhotosFromJson(json);
 
   @override
+  @HiveField(0)
   final int userId;
   @override
+  @HiveField(1)
   final int id;
   @override
+  @HiveField(2)
   final String title;
   final List<Photo> _photos;
   @override
+  @HiveField(3)
   List<Photo> get photos {
     if (_photos is EqualUnmodifiableListView) return _photos;
     // ignore: implicit_dynamic_type
@@ -353,23 +392,28 @@ class _$_AlbumWithPhotos implements _AlbumWithPhotos {
   }
 }
 
-abstract class _AlbumWithPhotos implements AlbumWithPhotos {
-  const factory _AlbumWithPhotos(
-      {required final int userId,
-      required final int id,
-      required final String title,
-      required final List<Photo> photos}) = _$_AlbumWithPhotos;
+abstract class _AlbumWithPhotos extends AlbumWithPhotos {
+  factory _AlbumWithPhotos(
+      {@HiveField(0) required final int userId,
+      @HiveField(1) required final int id,
+      @HiveField(2) required final String title,
+      @HiveField(3) required final List<Photo> photos}) = _$_AlbumWithPhotos;
+  _AlbumWithPhotos._() : super._();
 
   factory _AlbumWithPhotos.fromJson(Map<String, dynamic> json) =
       _$_AlbumWithPhotos.fromJson;
 
   @override
+  @HiveField(0)
   int get userId;
   @override
+  @HiveField(1)
   int get id;
   @override
+  @HiveField(2)
   String get title;
   @override
+  @HiveField(3)
   List<Photo> get photos;
   @override
   @JsonKey(ignore: true)

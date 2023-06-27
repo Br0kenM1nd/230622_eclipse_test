@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -7,6 +9,7 @@ import '../models/comment/comment.dart';
 import '../models/photo/photo.dart';
 import '../models/post/post.dart';
 import '../models/user/user.dart';
+import 'local_storage.dart';
 
 class ApiService {
   const ApiService();
@@ -14,66 +17,122 @@ class ApiService {
   static final _http = GetIt.I.get<Dio>();
 
   Future<List<User>> getAllUsers() async {
-    const url = '/users';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<User>().list(response.data!, User.fromJson);
+    const path = '/users';
+    final data = await LocalStorage.getData<User>(path);
+    if (data != null && data.isNotEmpty) return List<User>.from(data);
+
+    final response = await _http.get(path);
+    final users = await ConvertTo.list<User>(response.data, User.fromJson);
+    LocalStorage.saveData(path, users);
+    return users;
   }
 
   Future<List<Post>> getAllPosts() async {
-    const url = '/posts';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Post>().list(response.data!, Post.fromJson);
+    const path = '/posts';
+    final data = await LocalStorage.getData<Post>(path);
+    if (data != null && data.isNotEmpty) return List<Post>.from(data);
+
+    final response = await _http.get(path);
+    final posts = await ConvertTo.list<Post>(response.data, Post.fromJson);
+    LocalStorage.saveData(path, posts);
+    return posts;
   }
 
   Future<List<Album>> getAllAlbums() async {
-    const url = '/albums';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Album>().list(response.data!, Album.fromJson);
+    const path = '/albums';
+    final data = await LocalStorage.getData<Album>(path);
+    if (data != null && data.isNotEmpty) return List<Album>.from(data);
+
+    final response = await _http.get(path);
+    final albums = await ConvertTo.list<Album>(response.data, Album.fromJson);
+    LocalStorage.saveData(path, albums);
+    return albums;
   }
 
   Future<List<Photo>> getAllPhotos() async {
-    const url = '/photos';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Photo>().list(response.data!, Photo.fromJson);
+    const path = '/photos';
+    final data = await LocalStorage.getData<Photo>(path);
+    if (data != null && data.isNotEmpty) return List<Photo>.from(data);
+
+    final response = await _http.get(path);
+    final photos = await ConvertTo.list<Photo>(response.data, Photo.fromJson);
+    LocalStorage.saveData(path, photos);
+    return photos;
   }
 
   Future<List<Comment>> getAllComments() async {
-    const url = '/comments/';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Comment>().list(response.data!, Comment.fromJson);
+    const path = '/comments';
+    final data = await LocalStorage.getData<Comment>(path);
+    if (data != null && data.isNotEmpty) return List<Comment>.from(data);
+
+    final response = await _http.get(path);
+    final comments =
+        await ConvertTo.list<Comment>(response.data, Comment.fromJson);
+    LocalStorage.saveData(path, comments);
+    return comments;
   }
 
   Future<List<Post>> getPostsByUserId(int userId) async {
-    final url = '/user/$userId/posts';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Post>().list(response.data!, Post.fromJson);
+    final path = '/user/$userId/posts';
+    final data = await LocalStorage.getData<Post>(path);
+    if (data != null && data.isNotEmpty) return List<Post>.from(data);
+
+    final response = await _http.get(path);
+    final posts = await ConvertTo.list<Post>(response.data, Post.fromJson);
+    LocalStorage.saveData(path, posts);
+    return posts;
   }
 
   Future<List<Album>> getAlbumsByUserId(int userId) async {
-    final url = '/user/$userId/albums';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Album>().list(response.data!, Album.fromJson);
+    final path = '/user/$userId/albums';
+    final data = await LocalStorage.getData<Album>(path);
+    if (data != null && data.isNotEmpty) return List<Album>.from(data);
+
+    final response = await _http.get(path);
+    final albums = await ConvertTo.list<Album>(response.data, Album.fromJson);
+    LocalStorage.saveData(path, albums);
+    return albums;
   }
 
   Future<List<AlbumWithPhotos>> getAlbumsByUserIdWithPhotos(
     int userId,
   ) async {
-    final url = '/user/$userId/albums?_embed=photos';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<AlbumWithPhotos>()
-        .list(response.data!, AlbumWithPhotos.fromJson);
+    final path = '/user/$userId/albums?_embed=photos';
+    final data = await LocalStorage.getData<AlbumWithPhotos>(path);
+    if (data != null && data.isNotEmpty) {
+      return List<AlbumWithPhotos>.from(data);
+    }
+
+    final response = await _http.get(path);
+    final albumsWithPhotos = await ConvertTo.list<AlbumWithPhotos>(
+      response.data,
+      AlbumWithPhotos.fromJson,
+    );
+    LocalStorage.saveData(path, albumsWithPhotos);
+    return albumsWithPhotos;
   }
 
   Future<List<Photo>> getPhotosByAlbumId(int albumId) async {
-    final url = '/albums/$albumId/photos';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Photo>().list(response.data!, Photo.fromJson);
+    final path = '/albums/$albumId/photos';
+    final data = await LocalStorage.getData<Photo>(path);
+    if (data != null && data.isNotEmpty) return List<Photo>.from(data);
+
+    final response = await _http.get(path);
+    final photos = await ConvertTo.list<Photo>(response.data, Photo.fromJson);
+    LocalStorage.saveData(path, photos);
+    return photos;
   }
 
   Future<List<Comment>> getCommentsByPostId(int postId) async {
-    final url = '/posts/$postId/comments';
-    final response = await _http.get<List<dynamic>>(url);
-    return const ConvertTo<Comment>().list(response.data!, Comment.fromJson);
+    final path = '/posts/$postId/comments';
+    final data = await LocalStorage.getData<Comment>(path);
+    if (data != null && data.isNotEmpty) return List<Comment>.from(data);
+
+    final response = await _http.get(path);
+    final comments =
+        await ConvertTo.list<Comment>(response.data, Comment.fromJson);
+    LocalStorage.saveData(path, comments);
+    return comments;
   }
 
   Future<void> sendComment({
@@ -81,9 +140,9 @@ class ApiService {
     required String email,
     required String comment,
   }) async {
-    const url = '/comments';
+    const path = '/comments';
     await _http.post<Map<String, dynamic>>(
-      url,
+      path,
       data: {
         'name': name,
         'email': email,

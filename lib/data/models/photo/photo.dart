@@ -1,19 +1,22 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 
 part 'photo.freezed.dart';
 
 part 'photo.g.dart';
 
-@Freezed()
-class Photo with _$Photo {
-  const factory Photo({
-    required int albumId,
-    required int id,
-    required String title,
-    required String url,
-    required String thumbnailUrl,
+@freezed
+class Photo extends HiveObject with _$Photo {
+  Photo._();
+
+  @HiveType(typeId: 3)
+  factory Photo({
+    @HiveField(0) required int albumId,
+    @HiveField(1) required int id,
+    @HiveField(2) required String title,
+    @HiveField(3) required String url,
+    @HiveField(4) required String thumbnailUrl,
   }) = _Photo;
 
-  factory Photo.fromJson(Map<String, dynamic> json) =>
-      _$PhotoFromJson(json);
+  factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
 }

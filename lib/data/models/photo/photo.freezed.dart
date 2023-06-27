@@ -20,10 +20,15 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Photo {
+  @HiveField(0)
   int get albumId => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get url => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get thumbnailUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +42,11 @@ abstract class $PhotoCopyWith<$Res> {
       _$PhotoCopyWithImpl<$Res, Photo>;
   @useResult
   $Res call(
-      {int albumId, int id, String title, String url, String thumbnailUrl});
+      {@HiveField(0) int albumId,
+      @HiveField(1) int id,
+      @HiveField(2) String title,
+      @HiveField(3) String url,
+      @HiveField(4) String thumbnailUrl});
 }
 
 /// @nodoc
@@ -91,7 +100,11 @@ abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int albumId, int id, String title, String url, String thumbnailUrl});
+      {@HiveField(0) int albumId,
+      @HiveField(1) int id,
+      @HiveField(2) String title,
+      @HiveField(3) String url,
+      @HiveField(4) String thumbnailUrl});
 }
 
 /// @nodoc
@@ -136,26 +149,33 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Photo implements _Photo {
-  const _$_Photo(
-      {required this.albumId,
-      required this.id,
-      required this.title,
-      required this.url,
-      required this.thumbnailUrl});
+@HiveType(typeId: 3)
+class _$_Photo extends _Photo {
+  _$_Photo(
+      {@HiveField(0) required this.albumId,
+      @HiveField(1) required this.id,
+      @HiveField(2) required this.title,
+      @HiveField(3) required this.url,
+      @HiveField(4) required this.thumbnailUrl})
+      : super._();
 
   factory _$_Photo.fromJson(Map<String, dynamic> json) =>
       _$$_PhotoFromJson(json);
 
   @override
+  @HiveField(0)
   final int albumId;
   @override
+  @HiveField(1)
   final int id;
   @override
+  @HiveField(2)
   final String title;
   @override
+  @HiveField(3)
   final String url;
   @override
+  @HiveField(4)
   final String thumbnailUrl;
 
   @override
@@ -195,25 +215,31 @@ class _$_Photo implements _Photo {
   }
 }
 
-abstract class _Photo implements Photo {
-  const factory _Photo(
-      {required final int albumId,
-      required final int id,
-      required final String title,
-      required final String url,
-      required final String thumbnailUrl}) = _$_Photo;
+abstract class _Photo extends Photo {
+  factory _Photo(
+      {@HiveField(0) required final int albumId,
+      @HiveField(1) required final int id,
+      @HiveField(2) required final String title,
+      @HiveField(3) required final String url,
+      @HiveField(4) required final String thumbnailUrl}) = _$_Photo;
+  _Photo._() : super._();
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$_Photo.fromJson;
 
   @override
+  @HiveField(0)
   int get albumId;
   @override
+  @HiveField(1)
   int get id;
   @override
+  @HiveField(2)
   String get title;
   @override
+  @HiveField(3)
   String get url;
   @override
+  @HiveField(4)
   String get thumbnailUrl;
   @override
   @JsonKey(ignore: true)

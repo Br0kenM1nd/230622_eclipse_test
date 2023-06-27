@@ -1,13 +1,13 @@
 import 'dart:isolate';
 
-class ConvertTo<R> {
+abstract class ConvertTo {
   const ConvertTo();
 
-  Future<List<R>> list(List data, builder) async {
+  static Future<List<R>> list<R>(List data, builder) async {
     return Isolate.run(() => data.map<R>((e) => builder(e)).toList());
   }
 
-  Future<R> item(data, builder) async {
+  static Future<R> item<R>(data, builder) async {
     return Isolate.run(() => builder(data));
   }
 }

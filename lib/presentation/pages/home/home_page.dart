@@ -21,12 +21,11 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    bloc = context.read<UserListBloc>();
+    bloc = context.read<UserListBloc>()..add(const UserListGet());
   }
 
   @override
   Widget build(BuildContext context) {
-    bloc.add(const UserListGet());
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
